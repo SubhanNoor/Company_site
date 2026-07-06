@@ -1,4 +1,3 @@
-import GlobeCanvas from './GlobeCanvas';
 export { default as GlobeCanvas } from './GlobeCanvas';
 export { default } from './TechStackGlobe';
 export { default as TechStackGlobe } from './TechStackGlobe';

@@ -170,9 +170,13 @@
   }
 
   .magic-bento-card:nth-child(6) {
-    grid-column: span 2;
+    grid-column: span 1;
     grid-row: span 1;
-    aspect-ratio: auto;
+  }
+
+  .magic-bento-card:nth-child(7) {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 }
 

@@ -1,8 +1,25 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import DotField from './components/DotField/DotField';
 import MagicBento from './components/MagicBento/MagicBento';
 import Stack from './components/Stack/Stack';
 import TechStackGlobe from './components/TechStackGlobe';
+import rovonexLogo from './assets/LOGO.png';
+import proj1 from '../projects/RAG_1.png';
+import proj2 from '../projects/OCR.png';
+import proj3 from '../projects/Resume.png';
+import proj4 from '../projects/PersonFollowing .png';
+import proj5 from '../projects/AI powewred.png';
+import proj6 from '../projects/full_stack_robot.png';
+import proj7 from '../projects/image_segmentation_pipeline.png';
+import proj8 from '../projects/Wall.png';
+import proj9 from '../projects/face_reco.png';
+import proj10 from '../projects/RAg_document_searching.png';
+import proj11 from '../projects/resora.jpeg';
+import proj12 from '../projects/Find_a_car.png';
+import Carousel from './components/Carousel/Carousel';
+import type { CarouselItemData } from './components/Carousel/Carousel';
 import type { TechItem } from './components/TechStackGlobe';
 
 // Core Technologies Data
@@ -120,171 +137,215 @@ interface ProjectItem {
   category: string;
   tag: string;
   longDesc: string;
-  github: string;
-  linkedin: string;
   image: string;
 }
 
 // Grouped Projects Data with Descriptions & Pictures
 const projectsData: ProjectItem[] = [
-  // AI / ML
   {
     idx: '01',
-    name: 'NeuroCommerce',
-    desc: 'AI-powered recommendation engine with real-time personalization for e-commerce at scale.',
+    name: 'RAG Chatbot (Document Q&A)',
+    desc: 'Ask questions from your PDFs, websites, or databases and get accurate answers with source citations.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'NeuroCommerce leverages deep neural networks to track customer micro-intent sessions and serve personalized recommendations in sub-50ms. Features custom inference endpoints, product vector matching, and automated real-time performance analytics.',
-    github: 'https://github.com/buildlab/neurocommerce',
-    linkedin: 'https://linkedin.com/posts/buildlab-neurocommerce-launch',
-    image: '/project1.png'
+    longDesc: 'Ask questions from your PDFs, websites, or databases and get accurate answers with source citations. No more manual searching through documents.',
+    image: proj1
   },
   {
     idx: '02',
-    name: 'DocuMind',
-    desc: 'RAG-based document intelligence platform for enterprise knowledge management.',
+    name: 'Contract & Document Parsing → CRM Auto-Fill',
+    desc: 'Reads contracts, lease agreements, and inspection reports, pulls out key fields, and fills your CRM automatically.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'DocuMind is an intelligent Retrieval-Augmented Generation platform that ingests, parses, and extracts structural entities from millions of unstructured text documents. Offers precise semantic query searches and secure custom LLM chat integrations.',
-    github: 'https://github.com/buildlab/documind',
-    linkedin: 'https://linkedin.com/posts/buildlab-documind-rag',
-    image: '/project3.png'
+    longDesc: 'Reads contracts, lease agreements, and inspection reports, pulls out key fields, and fills your CRM automatically. Cut manual data entry by 80%. Paid for itself in the first week.',
+    image: proj2
   },
   {
     idx: '03',
-    name: 'HealthPulse',
-    desc: 'Computer vision system for automated medical imaging analysis and anomaly detection.',
+    name: 'AI Resume Screener & Candidate Ranker',
+    desc: 'Reads resumes in any format, ranks candidates against your job description, and books interviews automatically.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'An advanced medical analytics system applying convolutional neural networks to detect microscopic anomalies in high-resolution MRI scans, helping radiologists speed up clinical assessments.',
-    github: 'https://github.com/buildlab/healthpulse',
-    linkedin: 'https://linkedin.com/posts/buildlab-healthpulse-vision',
-    image: '/project1.png'
+    longDesc: 'Reads resumes in any format, ranks candidates against your job description, and books interviews automatically. Cut HR screening time by 80%.',
+    image: proj3
   },
   {
     idx: '04',
-    name: 'SentimentX',
-    desc: 'Real-time multi-lingual consumer sentiment monitoring stream for brand intelligence.',
+    name: 'On-Device Real-Time Threat Detection',
+    desc: 'Live camera threat detection running fully offline on local hardware.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'Tracks and classifies millions of social media mentions per hour across 14 languages using custom Transformer classification models, outputting live public perception indexes.',
-    github: 'https://github.com/buildlab/sentimentx',
-    linkedin: 'https://linkedin.com/posts/buildlab-sentimentx-nlp',
-    image: '/project3.png'
+    longDesc: 'Live camera threat detection running fully offline on local hardware. Flags threats in under 100ms at 22 FPS. Zero cloud costs.',
+    image: proj4
   },
   {
     idx: '05',
-    name: 'VisionFlow',
-    desc: 'Automated warehouse inventory tracking system using localized edge cameras.',
+    name: 'End-to-End Automated Recruitment Pipeline',
+    desc: 'Posts jobs, screens resumes, ranks candidates, finds hiring contacts, and books interviews — all automatically.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'Edge-deployed object identification systems mapping pallet SKU placements, shipping container tags, and logistics workers protective gear compliance in real-time.',
-    github: 'https://github.com/buildlab/visionflow',
-    linkedin: 'https://linkedin.com/posts/buildlab-visionflow-edge',
-    image: '/project1.png'
+    longDesc: 'Posts jobs, screens resumes, ranks candidates, finds hiring contacts, and books interviews — all automatically. Cut time-to-hire by 70% with zero manual work.',
+    image: proj5
   },
   {
     idx: '06',
-    name: 'ChatScout',
-    desc: 'Intelligent customer support agent with live database actions execution.',
-    category: 'AI / ML',
-    tag: 'AI',
-    longDesc: 'A secure customer assistant that solves issues, executes verified database updates, and changes user details through strict function-calling API integrations.',
-    github: 'https://github.com/buildlab/chatscout',
-    linkedin: 'https://linkedin.com/posts/buildlab-chatscout-agent',
-    image: '/project3.png'
+    name: 'Custom Robot Control Dashboard (UR20)',
+    desc: 'A clean web interface to control industrial robots in real time.',
+    category: 'Web',
+    tag: 'Web',
+    longDesc: 'A clean web interface to control industrial robots in real time. Replaces the clunky default controller with live telemetry and mission control. Built with React, Node.js, and PostgreSQL.',
+    image: proj6
   },
   {
     idx: '07',
-    name: 'TextSummarizer',
-    desc: 'Enterprise document summarization API with custom legal-jargon parsing.',
-    category: 'AI / ML',
-    tag: 'AI',
-    longDesc: 'Fine-tuned LLM model specializing in scanning 100+ page contracts and outputting highly structured brief summaries pointing out crucial corporate risk clauses.',
-    github: 'https://github.com/buildlab/textsummarizer',
-    linkedin: 'https://linkedin.com/posts/buildlab-text-summarization',
-    image: '/project1.png'
+    name: 'Custom Image Segmentation Pipeline',
+    desc: 'Accurately identifies and isolates objects in images for inspection or automation.',
+    category: 'Cloud',
+    tag: 'Cloud',
+    longDesc: 'Accurately identifies and isolates objects in images for inspection or automation. Fine-tuned on custom data and deployed on AWS for scale.',
+    image: proj7
   },
   {
     idx: '08',
-    name: 'DataSynthesizer',
-    desc: 'Generative adversarial network model to synthesize medical patient records.',
+    name: 'Blueprint & Drawing Data Extraction',
+    desc: 'Reads architectural drawings and pulls out key engineering info automatically.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'Generates mock clinical data and synthetic patient files to facilitate open research testing without violating private patient compliance regulations.',
-    github: 'https://github.com/buildlab/datasynthesizer',
-    linkedin: 'https://linkedin.com/posts/buildlab-synthetic-data',
-    image: '/project3.png'
+    longDesc: 'Reads architectural drawings and pulls out key engineering info automatically. Handles complex layouts accurately and saves hours of manual work.',
+    image: proj8
   },
   {
     idx: '09',
-    name: 'ForecastAI',
-    desc: 'Deep learning time-series model forecasting inventory demand peaks.',
+    name: 'Face Recognition & Emotion Detection',
+    desc: 'Finds faces in images or live camera feed, identifies people, and detects emotions in real time.',
     category: 'AI / ML',
     tag: 'AI',
-    longDesc: 'Combines historical sales variables, local weather trends, and economic indicators to calculate optimal manufacturing schedules and minimize overhead storage costs.',
-    github: 'https://github.com/buildlab/forecastai',
-    linkedin: 'https://linkedin.com/posts/buildlab-demand-forecasting',
-    image: '/project1.png'
+    longDesc: 'Finds faces in images or live camera feed, identifies people, and detects emotions in real time. Ready to plug into security or attendance systems.',
+    image: proj9
   },
-
-  // Web
   {
     idx: '10',
-    name: 'FleetSync',
-    desc: 'Real-time fleet management dashboard with GPS tracking and predictive maintenance analytics.',
-    category: 'Web',
-    tag: 'Web',
-    longDesc: 'FleetSync integrates live IoT tracking coordinates with predictive maintenance schedules, providing operational managers complete logistics visibility and minimizing route delays.',
-    github: 'https://github.com/buildlab/fleetsync',
-    linkedin: 'https://linkedin.com/posts/buildlab-fleetsync-launch',
-    image: '/project2.png'
+    name: 'Multi-Document Research Summarizer',
+    desc: 'Upload multiple documents, ask one question, get one answer with citations showing exactly which file it came from.',
+    category: 'AI / ML',
+    tag: 'AI',
+    longDesc: 'Upload multiple documents, ask one question, get one answer with citations showing exactly which file it came from. Handles multiple users at once without mixing their data.',
+    image: proj10
   },
   {
     idx: '11',
-    name: 'TradeFlow',
-    desc: 'Real-time financial trading dashboard with live market data and configurable alerts.',
+    name: 'Resora – University Resource Management System',
+    desc: 'Manages rooms, timetables, bookings, and departments in one place.',
     category: 'Web',
     tag: 'Web',
-    longDesc: 'A high-performance trading platform processing order book updates with WebSocket connections and rendering live charts with canvas layout widgets.',
-    github: 'https://github.com/buildlab/tradeflow',
-    linkedin: 'https://linkedin.com/posts/buildlab-tradeflow-realtime',
-    image: '/project2.png'
+    longDesc: 'Manages rooms, timetables, bookings, and departments in one place. Admins, teachers, and students each get their own view. Built with Node.js, React, and MS SQL Server.',
+    image: proj11
   },
   {
     idx: '12',
-    name: 'DevHub',
-    desc: 'Collaborative development space with real-time text and audio integrations.',
-    category: 'Web',
-    tag: 'Web',
-    longDesc: 'A rich collaborative code-sharing environment utilizing WebRTC for instant audio/video and OT (Operational Transformation) for concurrent editing.',
-    github: 'https://github.com/buildlab/devhub',
-    linkedin: 'https://linkedin.com/posts/buildlab-devhub-collab',
-    image: '/project2.png'
-  },
+    name: 'FindACar – AI Car Condition Grader',
+    desc: 'Analyzes used car images and listings and gives each car an objective grade (A+ to C).',
+    category: 'AI / ML',
+    tag: 'AI',
+    longDesc: 'Analyzes used car images and listings and gives each car an objective grade (A+ to C). No more manually checking every listing for damage. 87% damage detection accuracy, ready to integrate with platforms like PakWheels.',
+    image: proj12
+  }
+];
 
-  // Cloud
+// Toggle this flag to true to enable project mockup/screenshots in the detail modals
+const SHOW_PROJECT_IMAGES = false;
+
+// Toggle this flag to true to enable the Carousel Stats section under the hero block
+const SHOW_STATS_SECTION = false;
+
+// Typewriter Component for Hero Title descriptors
+function Typewriter({ words, speed = 80, delay = 2200 }: { words: string[], speed?: number, delay?: number }) {
+  const [currentWordIdx, setCurrentWordIdx] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer: any;
+    const activeWord = words[currentWordIdx];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setCurrentText(prev => prev.slice(0, -1));
+      }, speed / 1.8);
+    } else {
+      timer = setTimeout(() => {
+        setCurrentText(activeWord.slice(0, currentText.length + 1));
+      }, speed);
+    }
+
+    if (!isDeleting && currentText === activeWord) {
+      timer = setTimeout(() => setIsDeleting(true), delay);
+    } else if (isDeleting && currentText === '') {
+      setIsDeleting(false);
+      setCurrentWordIdx((prev) => (prev + 1) % words.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIdx, words, speed, delay]);
+
+  return (
+    <span className="typewriter-container">
+      {currentText}
+      <span className="typewriter-cursor">|</span>
+    </span>
+  );
+}
+
+const statItems: CarouselItemData[] = [
   {
-    idx: '13',
-    name: 'CloudOps',
-    desc: 'Infrastructure automation platform for multi-cloud deployments with Terraform orchestration.',
-    category: 'Cloud',
-    tag: 'Cloud',
-    longDesc: 'Provides visual interface to declare, validate, and orchestrate complex cloud resources on AWS, GCP, and Azure using structured configurations.',
-    github: 'https://github.com/buildlab/cloudops',
-    linkedin: 'https://linkedin.com/posts/buildlab-cloudops-infra',
-    image: '/project2.png'
+    id: 1,
+    number: '15+',
+    title: 'Successful Launches',
+    description: 'Custom products shipped from design to scaling.',
+    icon: (
+      <svg stroke="currentColor" fill="none" strokeWidth="2.5" viewBox="0 0 24 24" className="carousel-icon" style={{ width: '18px', height: '18px' }}>
+        <path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5" />
+        <path d="M12 2C7.5 2 4 5.5 4 10c0 4.5 3 7.5 8 12 5-4.5 8-7.5 8-10c0-4.5-3.5-8-8-8z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    )
   },
   {
-    idx: '14',
-    name: 'KubeGuard',
-    desc: 'Real-time security auditing and anomaly detection agent for Kubernetes clusters.',
-    category: 'Cloud',
-    tag: 'Cloud',
-    longDesc: 'Deep eBPF-based runtime monitoring daemon that watches cluster system calls, warning when an container attempts to run malicious actions.',
-    github: 'https://github.com/buildlab/kubeguard',
-    linkedin: 'https://linkedin.com/posts/buildlab-kubeguard-security',
-    image: '/project2.png'
+    id: 2,
+    number: '99.9%',
+    title: 'Platform Uptime',
+    description: 'Resilient microservices monitored 24/7.',
+    icon: (
+      <svg stroke="currentColor" fill="none" strokeWidth="2.5" viewBox="0 0 24 24" className="carousel-icon" style={{ width: '18px', height: '18px' }}>
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    )
+  },
+  {
+    id: 3,
+    number: '40%',
+    title: 'Cloud Cost Savings',
+    description: 'Through infrastructure optimization & clustering.',
+    icon: (
+      <svg stroke="currentColor" fill="none" strokeWidth="2.5" viewBox="0 0 24 24" className="carousel-icon" style={{ width: '18px', height: '18px' }}>
+        <line x1="12" y1="1" x2="12" y2="23"></line>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+    )
+  },
+  {
+    id: 4,
+    number: '100%',
+    title: 'Client Retention',
+    description: 'Long-term engineering partnerships built on trust.',
+    icon: (
+      <svg stroke="currentColor" fill="none" strokeWidth="2.5" viewBox="0 0 24 24" className="carousel-icon" style={{ width: '18px', height: '18px' }}>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    )
   }
 ];
 
@@ -295,6 +356,14 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [statsActiveIndex, setStatsActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStatsActiveIndex(prev => (prev + 1) % statItems.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -316,11 +385,27 @@ function App() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.message) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: '', email: '', message: '' });
-      }, 5000);
+      // Replace 'YOUR_PUBLIC_KEY' below with your actual EmailJS Public Key from the Account tab in the dashboard
+      emailjs.send(
+        'service_d1ss6b7',
+        'template_93fbpds',
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        },
+        'MuSURu1O_VcuiadCp'
+      )
+        .then(() => {
+          setFormSubmitted(true);
+          setTimeout(() => {
+            setFormSubmitted(false);
+            setFormData({ name: '', email: '', message: '' });
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error('Email failed to send:', error);
+        });
     }
   };
 
@@ -330,14 +415,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"BuildLab delivered our core enterprise dashboard ahead of schedule. Their attention to software architecture and frontend polish is second to none."</p>
+          <p className="testimonial-text">"Built a YOLOv8-based perception system for our mobile robot. Delivered real-time performance on Jetson Orin. Exactly what we needed."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
-            <div className="client-monogram-circle">MV</div>
+            <div className="client-monogram-circle">WR</div>
             <div>
-              <span className="client-name" style={{ display: 'block' }}>Marcus Vance</span>
-              <span className="client-role">Founder, ScaleLabs</span>
+              <span className="client-name" style={{ display: 'block' }}>Wild Robotics</span>
+              <span className="client-role">Perception Division</span>
             </div>
           </div>
         </div>
@@ -347,14 +432,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"They refactored our AWS environments to Kubernetes, reducing hosting costs by 45% while achieving automated failover scaling. True cloud experts."</p>
+          <p className="testimonial-text">"Designed an autonomous guided vehicle for our warehouse using Nav2 and SLAM. Handles navigation on its own — no manual input needed."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
-            <div className="client-monogram-circle">ER</div>
+            <div className="client-monogram-circle">A</div>
             <div>
-              <span className="client-name" style={{ display: 'block' }}>Elena Rostova</span>
-              <span className="client-role">Head of Infrastructure, CloudCore</span>
+              <span className="client-name" style={{ display: 'block' }}>Angel</span>
+              <span className="client-role">Warehouse Automation Lead</span>
             </div>
           </div>
         </div>
@@ -368,31 +453,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"The AI integration they built for our asset moderation pipeline has reduced our audit latency by 4x. Phenomenal engineering standards."</p>
+          <p className="testimonial-text">"Deep knowledge of computer vision and deep learning. Deployed object detection and anomaly detection models that actually work in production. Highly recommend."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
-            <div className="client-monogram-circle">AT</div>
+            <div className="client-monogram-circle">H</div>
             <div>
-              <span className="client-name" style={{ display: 'block' }}>Dr. Aris Thorne</span>
-              <span className="client-role">VP of AI, Cognition Corp</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    (
-      <div className="testimonial-card">
-        <div>
-          <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"Exceptional communications and high technical capacity. They didn't just write code; they understood our business challenges and built the right solutions."</p>
-        </div>
-        <div className="client-info">
-          <div className="client-avatar-row">
-            <div className="client-monogram-circle">DK</div>
-            <div>
-              <span className="client-name" style={{ display: 'block' }}>David K.</span>
-              <span className="client-role">CTO, HealthSync</span>
+              <span className="client-name" style={{ display: 'block' }}>Henry</span>
+              <span className="client-role">Technical Lead</span>
             </div>
           </div>
         </div>
@@ -406,8 +474,8 @@ function App() {
       <header className={headerScrolled ? 'scrolled' : ''}>
         <div className="header-container">
           <a href="#" className="logo">
-            <div className="logo-icon"></div>
-            BuildLab
+            <img src={rovonexLogo} alt="Rovonex Logo" className="logo-img" />
+            Rovonex
           </a>
           <ul className="nav-links">
             <li><a href="#services">Services</a></li>
@@ -437,54 +505,101 @@ function App() {
             glowColor="rgba(26, 18, 11, 0.22)"
           />
         </div>
-        <div className="hero-content">
-          <div className="hero-badge">
+        <motion.div
+          className="hero-content"
+          initial="initial"
+          animate="animate"
+          variants={{
+            initial: {},
+            animate: {
+              transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.1
+              }
+            }
+          }}
+        >
+          <motion.div
+            className="hero-badge"
+            variants={{
+              initial: { opacity: 0, y: 15 },
+              animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
             <span>✦</span> Premium Software Architecture & AI Engineering
-          </div>
-          <h1 className="hero-title">
-            We Architect <span>Intelligent</span> & Scalable Digital Products
-          </h1>
-          <p className="hero-subtitle">
+          </motion.div>
+          <motion.h1
+            className="hero-title"
+            variants={{
+              initial: { opacity: 0, y: 25 },
+              animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
+            We Architect <span><Typewriter words={['Intelligent', 'Production-Grade', 'Future-Proof', 'High-Performance', 'Scalable']} /></span> Digital Products
+          </motion.h1>
+          <motion.p
+            className="hero-subtitle"
+            variants={{
+              initial: { opacity: 0, y: 25 },
+              animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
             A boutique development studio partnering with visionary teams to deploy production-grade software applications, custom AI systems, and robust cloud infrastructure.
-          </p>
-          <div className="hero-actions">
+          </motion.p>
+          <motion.div
+            className="hero-actions"
+            variants={{
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
             <a href="#contact" className="btn btn-primary">
               Schedule a Consultation
             </a>
             <a href="#services" className="btn btn-secondary">
               Explore Our Services
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section">
-        <div className="section-container">
-          <div className="stats-grid">
-            <div className="stat-card">
-              <div className="stat-number">15+</div>
-              <div className="stat-label">Successful Launches</div>
-              <div className="stat-desc">Custom products shipped from design to scaling.</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">99.9%</div>
-              <div className="stat-label">Platform Uptime</div>
-              <div className="stat-desc">Resilient microservices monitored 24/7.</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">40%</div>
-              <div className="stat-label">Cloud Cost Savings</div>
-              <div className="stat-desc">Through infrastructure optimization & clustering.</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">Client Retention</div>
-              <div className="stat-desc">Long-term engineering partnerships built on trust.</div>
-            </div>
+      {SHOW_STATS_SECTION && (
+        <section className="stats-section">
+          <div className="section-container stats-carousels-container">
+            <Carousel
+              items={statItems}
+              baseWidth={350}
+              autoplay={true}
+              autoplayDelay={3200}
+              pauseOnHover={true}
+              loop={true}
+              startIndex={0}
+              controlledIndex={statsActiveIndex}
+            />
+            <Carousel
+              items={statItems}
+              baseWidth={350}
+              autoplay={true}
+              autoplayDelay={3200}
+              pauseOnHover={true}
+              loop={true}
+              startIndex={1}
+              controlledIndex={(statsActiveIndex + 1) % statItems.length}
+            />
+            <Carousel
+              items={statItems}
+              baseWidth={350}
+              autoplay={true}
+              autoplayDelay={3200}
+              pauseOnHover={true}
+              loop={true}
+              startIndex={2}
+              controlledIndex={(statsActiveIndex + 2) % statItems.length}
+            />
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Services Bento Grid Section */}
       <section id="services">
@@ -499,7 +614,7 @@ function App() {
           </p>
           <MagicBento
             textAutoHide={false}
-            enableStars={true}
+            enableStars={false}
             enableSpotlight={true}
             enableBorderGlow={true}
             enableTilt={true}
@@ -547,7 +662,7 @@ function App() {
               return (
                 <div className="project-category-group" style={{ width: '100%' }}>
                   <div className="projects-list">
-                    {visibleProjects.map(p => (
+                    {visibleProjects.map((p, index) => (
                       <a
                         href="#"
                         className="project-row"
@@ -557,7 +672,7 @@ function App() {
                           setSelectedProject(p);
                         }}
                       >
-                        <span className="project-idx">{p.idx}</span>
+                        <span className="project-idx">{String(index + 1).padStart(2, '0')}</span>
                         <span className="project-name">{p.name}</span>
                         <span className="project-desc-text">{p.desc}</span>
                         <div>
@@ -589,54 +704,38 @@ function App() {
         <div className="project-modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="project-modal-card" onClick={(e) => e.stopPropagation()}>
             <button className="project-modal-close" onClick={() => setSelectedProject(null)}>&times;</button>
-            
-            <div className="project-modal-image-wrapper">
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.name}
-                className="project-modal-img"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
-              />
-              <div className="project-modal-img-fallback">
-                <div className="fallback-ui-sim">
-                  <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
-                    <span className="sim-dot red"></span>
-                    <span className="sim-dot yellow"></span>
-                    <span className="sim-dot green"></span>
+            {SHOW_PROJECT_IMAGES && (
+              <div className="project-modal-image-wrapper">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.name}
+                  className="project-modal-img"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <div className="project-modal-img-fallback">
+                  <div className="fallback-ui-sim">
+                    <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+                      <span className="sim-dot red"></span>
+                      <span className="sim-dot yellow"></span>
+                      <span className="sim-dot green"></span>
+                    </div>
+                    <div className="sim-title">{selectedProject.name} Dashboard Mockup</div>
                   </div>
-                  <div className="sim-title">{selectedProject.name} Dashboard Mockup</div>
                 </div>
               </div>
-            </div>
-            
+            )}
+
             <div className="project-modal-content">
               <div className="project-modal-header">
                 <span className="project-modal-category">{selectedProject.category}</span>
                 <h3 className="project-modal-title">{selectedProject.name}</h3>
               </div>
-              
+
               <p className="project-modal-desc">
                 {selectedProject.longDesc}
               </p>
-              
-              <div className="project-modal-footer">
-                <div className="project-modal-links">
-                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="project-modal-link-btn" title="View Repository on GitHub">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                    </svg>
-                    GitHub
-                  </a>
-                  <a href={selectedProject.linkedin} target="_blank" rel="noopener noreferrer" className="project-modal-link-btn" title="View Case Study on LinkedIn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -688,7 +787,7 @@ function App() {
               />
               <div className="testimonial-caption">CLICK CARD · AUTO-CYCLES</div>
             </div>
-            
+
             <div className="testimonial-stack-wrapper">
               <Stack
                 randomRotation={true}
@@ -720,14 +819,14 @@ function App() {
                   <div className="contact-icon">✉</div>
                   <div className="contact-method-details">
                     <h4>Direct Email</h4>
-                    <p>hello@buildlab.io</p>
+                    <p><a href="mailto:musmannoor2004@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>musmannoor2004@gmail.com</a></p>
                   </div>
                 </div>
                 <div className="contact-method-item">
                   <div className="contact-icon">📍</div>
                   <div className="contact-method-details">
                     <h4>Studio Location</h4>
-                    <p>San Francisco, California</p>
+                    <p>Lahore, Pakistan</p>
                   </div>
                 </div>
               </div>
@@ -788,8 +887,8 @@ function App() {
         <div className="footer-container">
           <div className="footer-info">
             <a href="#" className="footer-logo">
-              <div className="footer-logo-icon"></div>
-              BuildLab
+              <img src={rovonexLogo} alt="Rovonex Logo" className="logo-img" />
+              Rovonex
             </a>
             <p>
               Boutique software architecture studio building high-performance web products, AI integrations, and resilient cloud systems.
@@ -808,29 +907,19 @@ function App() {
           <div className="footer-links-col">
             <h4>Capabilities</h4>
             <ul>
-              <li><a href="#services">Web Development</a></li>
-              <li><a href="#services">Cloud Deployments</a></li>
               <li><a href="#services">AI/ML Models</a></li>
-              <li><a href="#services">RAG & Retrieval</a></li>
+              <li><a href="#services">Computer Vision</a></li>
+              <li><a href="#services">RAG & Cognitive Search</a></li>
+              <li><a href="#services">Web Development</a></li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} BuildLab Studio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Rovonex Studio. All rights reserved.</p>
           <div className="footer-socials">
-            <a href="https://github.com" target="_blank" aria-label="GitHub" title="GitHub">
+            <a href="https://www.linkedin.com/in/muhammad-usman-noor-b2a497236/" target="_blank" aria-label="LinkedIn" title="LinkedIn">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" title="LinkedIn">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="https://x.com" target="_blank" aria-label="X" title="X">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
           </div>

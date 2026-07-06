@@ -17,18 +17,6 @@ interface CardItem {
 const cardData: CardItem[] = [
   {
     color: '#ffffff',
-    title: 'Web Development',
-    description: 'Full-stack applications built with modern frameworks, optimized for performance and scale.',
-    label: 'FRONTEND · BACKEND'
-  },
-  {
-    color: '#ffffff',
-    title: 'Cloud Deployment',
-    description: 'Production-grade infrastructure on AWS or GCP with CI/CD pipelines and full observability.',
-    label: 'AWS · GCP · K8S'
-  },
-  {
-    color: '#ffffff',
     title: 'AI / ML Integration',
     description: 'Intelligent features embedded in your product — recommendation engines, NLP, and classification pipelines.',
     label: 'MODELS · PIPELINES'
@@ -41,15 +29,33 @@ const cardData: CardItem[] = [
   },
   {
     color: '#ffffff',
+    title: 'RAG & Cognitive Search',
+    description: 'Retrieval-augmented generation and cognitive search pipelines that make your private data instantly queryable.',
+    label: 'LLM · RETRIEVAL · COG'
+  },
+  {
+    color: '#ffffff',
+    title: 'Cloud Deployment',
+    description: 'Production-grade infrastructure on AWS or GCP with CI/CD pipelines and full observability.',
+    label: 'AWS · GCP · K8S'
+  },
+  {
+    color: '#ffffff',
     title: 'API Development',
     description: 'Robust REST and GraphQL APIs that power your frontends and third-party integrations reliably.',
     label: 'REST · GRAPHQL'
   },
   {
     color: '#ffffff',
-    title: 'RAG Systems',
-    description: 'Retrieval-augmented generation pipelines that make your private data instantly queryable.',
-    label: 'LLM · RETRIEVAL'
+    title: 'Web Development',
+    description: 'Full-stack applications built with modern frameworks, optimized for performance and scale.',
+    label: 'FRONTEND · BACKEND'
+  },
+  {
+    color: '#ffffff',
+    title: 'QA & Maintenance',
+    description: 'Ongoing software maintenance, performance auditing, and reliable bug patch support.',
+    label: 'DEVOP · SUPPORT'
   }
 ];
 

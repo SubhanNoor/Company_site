@@ -65,7 +65,7 @@ const DotField = memo(({
     const canvas = canvasRef.current;
     const glowEl = glowRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d', { alpha: true }) as CanvasRenderingContext2D;
     if (!ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let resizeTimer: any;

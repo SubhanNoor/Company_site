@@ -92,7 +92,7 @@ header.scrolled {
   align-items: center;
 }
 
-/* Brand Logo (BuildLab style with brown square logo) */
+/* Brand Logo (Rovonex style with imported logo image) */
 .logo {
   display: flex;
   align-items: center;
@@ -103,6 +103,13 @@ header.scrolled {
   letter-spacing: -0.03em;
   color: var(--text-primary);
   text-decoration: none;
+}
+
+.logo-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-icon {
@@ -370,6 +377,30 @@ section {
 .stats-section {
   background-color: #fbf9f6;
   border-bottom: 1px solid var(--border-color);
+}
+
+.stats-carousels-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+  padding: 40px 0;
+}
+
+@media (max-width: 1024px) {
+  .stats-carousels-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-carousels-container {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+  }
 }
 
 .stats-grid {
@@ -1135,4 +1166,18 @@ footer {
 @keyframes scaleIn {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+/* Typewriter cursor blink animation */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  animation: cursorBlink 0.9s infinite;
+  color: var(--gold-primary);
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
