@@ -415,14 +415,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"Built a YOLOv8-based perception system for our mobile robot. Delivered real-time performance on Jetson Orin. Exactly what we needed."</p>
+          <p className="testimonial-text">"Built a clean, real-time web dashboard to control our UR20 industrial arm. Replaced the clunky hardware pendant with a modern interface, making robot control and telemetry tracking seamless."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
             <div className="client-monogram-circle">WR</div>
             <div>
               <span className="client-name" style={{ display: 'block' }}>Wild Robotics</span>
-              <span className="client-role">Perception Division</span>
+              <span className="client-role">Operations Lead</span>
             </div>
           </div>
         </div>
@@ -432,14 +432,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"Designed an autonomous guided vehicle for our warehouse using Nav2 and SLAM. Handles navigation on its own — no manual input needed."</p>
+          <p className="testimonial-text">"The RAG Chatbot and Document Q&A system has revolutionized our database search. Being able to ask questions directly to our files and get instant answers with citations has saved us hours."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
             <div className="client-monogram-circle">A</div>
             <div>
               <span className="client-name" style={{ display: 'block' }}>Angel</span>
-              <span className="client-role">Warehouse Automation Lead</span>
+              <span className="client-role">Technical Lead</span>
             </div>
           </div>
         </div>
@@ -453,14 +453,14 @@ function App() {
       <div className="testimonial-card">
         <div>
           <div className="stars">★★★★★</div>
-          <p className="testimonial-text">"Deep knowledge of computer vision and deep learning. Deployed object detection and anomaly detection models that actually work in production. Highly recommend."</p>
+          <p className="testimonial-text">"Developed and deployed an objective AI Car Condition Grader model with 87% damage detection accuracy. Highly recommend for high-performance computer vision pipelines."</p>
         </div>
         <div className="client-info">
           <div className="client-avatar-row">
             <div className="client-monogram-circle">H</div>
             <div>
               <span className="client-name" style={{ display: 'block' }}>Henry</span>
-              <span className="client-role">Technical Lead</span>
+              <span className="client-role">Product Director</span>
             </div>
           </div>
         </div>

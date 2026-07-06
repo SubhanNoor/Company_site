@@ -36,8 +36,8 @@ const cardData: CardItem[] = [
   {
     color: '#ffffff',
     title: 'Cloud Deployment',
-    description: 'Production-grade infrastructure on AWS or GCP with CI/CD pipelines and full observability.',
-    label: 'AWS · GCP · K8S'
+    description: 'Production-grade infrastructure on AWS, Azure, or GCP with CI/CD pipelines and full observability.',
+    label: 'AWS · AZURE · GCP'
   },
   {
     color: '#ffffff',
