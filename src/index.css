@@ -317,9 +317,6 @@ section {
 
 .hero-title span {
   color: var(--gold-primary);
-  background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
