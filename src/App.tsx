@@ -526,7 +526,7 @@ function App() {
               animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
             }}
           >
-            <span>✦</span> Premium Software Architecture & AI Engineering
+            <span>✦</span> Premium Software Architecture & AI Development
           </motion.div>
           <motion.h1
             className="hero-title"
